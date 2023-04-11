@@ -36,13 +36,26 @@ export default function Navbar() {
                     </>
                 )}
 
-                {/* user is not signed OR has not created username */}
-                {!username && (
-                    <li>
+                {/* user is not signed */}
+                {!user && !username && (
+                    <li className="push-left">
                         <Link href="/enter">
                             <button className='btn-orange'>Log In</button>
                         </Link>
                     </li>
+                )}
+                {/* user is signed and has not created username */}
+                {user && !username && (
+                    <>
+                    <li className="push-left">
+                        <Link href="/enter">
+                            <button className='btn-orange'>Log In</button>
+                        </Link>
+                    </li>
+                    <li>
+                    <   button className="btn-orange" onClick={() => signOut(auth)}>Sign Out</button>
+                    </li>
+                    </>
                 )}
             </ul>
         </nav>
