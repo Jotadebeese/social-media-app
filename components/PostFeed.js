@@ -11,19 +11,19 @@ function PostItem({ post, admin = false }) {
 
     return (
         <div className="card">
-            <Link href={`/${post.username}`}>
-                <a>By @{post.username}</a>
+            <Link className="text-username" href={`/${post.username}`}>
+                By <span>@{post.username}</span>
             </Link>
 
             <Link href={`/${post.username}/${post.slug}`}>
                 <h2>
-                    <a>{post.title}</a>
+                    {post.title}
                 </h2>
             </Link>
 
             <footer>
                 <span>{wordCount} words. {minutesToRead} min read.</span>
-                <span className="push-left">heart here {post.heartCount || 0} Hearts</span>
+                <span className="push-left"><img src={'/carrot.png'} width="30px" />&nbsp;{post.heartCount || 0}</span>
             </footer>
 
             {/* If admin mood, display exctra controls for user*/}

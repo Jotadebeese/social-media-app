@@ -42,6 +42,11 @@ input {
   font-size: 1rem;
 }
 
+a:visited {
+  color: var(--color-text);
+}
+a{text-decoration: none;}
+
 /* Navbar */
 
 .navbar {
@@ -73,7 +78,7 @@ input {
 }
 
 /* Buttons */
-a{text-decoration: none;}
+
 button {
   background-color: var(--color-gray);
   border: none;
@@ -90,6 +95,23 @@ button {
   border-radius: 10px;
   cursor: pointer;
   margin: 0 10px 0 0;
+  white-space: nowrap;
+}
+
+@media only screen and (max-width: 768px) {
+  button {
+    font-size: 0.8rem;
+  }
+}
+
+button:hover {
+  filter: brightness(90%);
+}
+
+button:disabled,
+button[disabled]{
+  filter: brightness(80%);
+  cursor: not-allowed;
 }
 
 button.btn-orange {
@@ -121,6 +143,45 @@ button.btn-google {
   
 }
 
+/* Cards */
+.card {
+  padding: 2rem;
+  margin: 1rem 0;
+  background-color: var(--color-text);
+  color: var(--color-bg);
+  width: 800px;
+  margin: 10px auto;
+  border-radius: 20px;
+}
+
+.card a {
+  color: inherit;
+}
+
+.text-username span {
+  color: var(--color-orange);
+  text-shadow:1px 1px var(--color-bg);
+}
+
+.card footer, .card footer span {
+  display: flex;
+  align-items: center;
+}
+
+.card-img-center {
+  width: 20%;
+  display:block;
+  margin: auto;
+  border-radius: 50%;
+  max-width: 150px;
+}
+
+@media only screen and (max-width: 900px) {
+  .card {
+    width: 90%;
+  }
+}
+
 /* Utilities */
 
 .push-left {
@@ -135,4 +196,11 @@ button.btn-google {
   color: var(--color-green);
   display: flex;
   align-items: center;
+}
+
+.box-center {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  text-align: center;
 }
