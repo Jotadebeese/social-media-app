@@ -126,6 +126,12 @@ button.btn-google {
   background-color: white;
 }
 
+button.load-more {
+  width: fit-content;
+  align-self: center;
+  background-color: var(--color-orange);
+}
+
 /* Loader */
 
 .loader {
@@ -135,6 +141,7 @@ button.btn-google {
   width: 69px;
   height: 69px;
   animation: spin 2s linear infinite;
+  align-self: center;
 }
 
 @keyframes spin {
