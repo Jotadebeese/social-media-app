@@ -8,6 +8,13 @@ export async function getServerSideProps({ query: urlQuery }) {
 
     const userDoc = await getUserWithUsername(username);
 
+    // If no user, display 4004 page
+    if (!userDoc) {
+        return {
+            notFound: true,
+        }
+    }
+
     // JSON serializable data
     let user = null;
     let posts = null;
@@ -16,11 +23,10 @@ export async function getServerSideProps({ query: urlQuery }) {
         user = userDoc.data();
 
         const postsQuery = query(
-            collection(firestore, 'posts'),
+            collection(getFirestore(), userDoc.ref.path, 'posts'),
             where('published', '==', true),
-            where('username', '==', username),
             orderBy('createdAt', 'desc'),
-            limit(5)
+            limit(1)
         );
         posts = (await getDocs(postsQuery)).docs.map(postToJSON);
     }
