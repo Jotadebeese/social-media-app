@@ -3,6 +3,7 @@ import Loader from '@/components/Loader'
 import { orderBy, where, query, collectionGroup, limit, getDocs, Timestamp, startAfter } from 'firebase/firestore';
 import { firestore, postToJSON } from '@/lib/firebase';
 import { useState } from 'react';
+import Metatags from '@/components/Metatags';
 
 
 // Max post to query per page
@@ -57,6 +58,8 @@ export default function Home(props) {
 
   return (
     <main>
+      <Metatags title="Home Page" description="Get the latest posts on our site" />
+
       <PostFeed posts={posts} />
 
       <div className='box-center'>

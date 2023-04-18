@@ -2,6 +2,7 @@ import { firestore, getUserWithUsername, postToJSON } from "@/lib/firebase"
 import UserProfile from "@/components/UserProfile"
 import PostFeed from "@/components/PostFeed"
 import { getFirestore, orderBy, where, query, collection, getDocs, limit } from "firebase/firestore";
+import Metatags from "@/components/Metatags";
 
 export async function getServerSideProps({ query: urlQuery }) {
     const { username } = urlQuery;
@@ -39,6 +40,7 @@ export async function getServerSideProps({ query: urlQuery }) {
 export default function UserProfilePage({ user, posts }) {
     return (
         <main>
+            <Metatags title={user.username} description={`${user.username}'s public profile`} />
             <UserProfile user={user} />
             <PostFeed posts={posts} />
         </main>

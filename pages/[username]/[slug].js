@@ -6,6 +6,7 @@ import { doc, getDocs, getDoc, collectionGroup, query, limit, getFirestore } fro
 import { useContext } from "react";
 import { useDocumentData } from 'react-firebase-hooks/firestore'
 import Link from 'next/link';
+import Metatags from '@/components/Metatags';
 
 
 export async function getStaticProps({ params }) {
@@ -70,7 +71,7 @@ export default function Post(props) {
 
     return (
       <main className={styles.container}>
-
+        <Metatags title={post.title} description={post.title} />
         <section>
             <PostContent post={post} />
         </section>
