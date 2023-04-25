@@ -1,4 +1,4 @@
-import { Timestamp } from "firebase/firestore";
+import { Timestamp, serverTimestamp } from "firebase/firestore";
 import Link from "next/link";
 
 export default function PostFeed({ posts, admin }) {
@@ -6,7 +6,7 @@ export default function PostFeed({ posts, admin }) {
 }
 // Calculate the time ago of a post
 function getTimeAgo(timestamp) {
-    const postDate = timestamp.toDate();
+    const postDate = timestamp === null? new Date() : timestamp.toDate();
     const currentDate = new Date();
     const timeDiff = currentDate.getTime() - postDate.getTime();
     const seconds = Math.floor(timeDiff / 1000);
@@ -45,7 +45,16 @@ function PostItem({ post, admin = false }) {
 
     return (
         <div className="card">
-            <header>
+            {admin && (
+                <div className="card-header">
+                    <Link href={`/admin/${post.slug}`}>
+                        <button className="btn-green">Edit</button>
+                    </Link>
+
+                    {post.published ? <p className="text-success push-left">Live</p> : <p className="push-left text-danger">Unpublished</p>}
+                </div>
+            )}
+            <header className="card-header">
                 <Link className="text-username" href={`/${post.username}`}>
                     By <span>@{post.username}</span>
                 </Link>
@@ -64,15 +73,7 @@ function PostItem({ post, admin = false }) {
             </footer>
 
             {/* If admin mood, display exctra controls for user*/}
-            {admin && (
-                <>
-                    <Link href={`/admin/${post.slug}`}>
-                        <button className="btn-green">Edit</button>
-                    </Link>
-
-                    {post.published ? <p className="text-success">Live</p> : <p className="text-danger">Unpublished</p>}
-                </>
-            )}
+            
         </div>
     );
 }
