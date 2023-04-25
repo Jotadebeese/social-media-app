@@ -5,6 +5,7 @@ import { useEffect, useState, useCallback, useContext } from "react";
 import { UserContext } from "@/lib/context";
 import debounce from "lodash.debounce";
 import Metatags from "@/components/Metatags";
+import { useRouter } from "next/router";
 
 export default function EnterPage(props) {
     
@@ -13,16 +14,23 @@ export default function EnterPage(props) {
     return (
         <main>
             <Metatags title="Enter" description="Sign up for this amazing app!" />
-            {user ? !username ? <UsernameForm /> : <SignOutButton /> : <SignInButton />
+            {user ? !username ? <UsernameForm /> : <Redirect /> : <SignInButton />
             }
         </main>
     )
 }
 
+function Redirect() {
+    const router = useRouter()
+    const redirectUrl = router.query.redirect// get the URL from the query parameter
+    router.push(redirectUrl) // redirect the user back to the original page
+}
+
 // Sign in with google button
 function SignInButton() {
+
     const signInWithGoogle = async () => {
-        await signInWithPopup(auth, googleAuthProvider)
+        await signInWithPopup(auth, googleAuthProvider);
     };
 
     return (
@@ -30,11 +38,6 @@ function SignInButton() {
             <img src={'/google.png'} width="20px" />&nbsp;Sign in with Google
         </button>
     )
-}
-
-// Sign out button
-function SignOutButton() {
-    return <button onClick={() => signOut(auth)}>Sign Out</button>;
 }
 
 // Username form

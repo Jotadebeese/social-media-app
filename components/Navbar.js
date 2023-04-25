@@ -1,13 +1,26 @@
 import Link from 'next/link'
 import { auth } from "@/lib/firebase"
 import { signOut } from "firebase/auth";
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { UserContext } from '@/lib/context';
+import { useRouter } from 'next/router';
+
 
 // Tap navbar
+
 export default function Navbar() {
     
-    const { user, username } = useContext(UserContext)
+    const { user, username } = useContext(UserContext);
+    const router = useRouter();
+
+    function handleLoginClick() {
+        
+        const redirectUrl = router.asPath // get the current URL
+        router.push({
+          pathname: '/enter',
+          query: { redirect: redirectUrl } // pass the URL as a query parameter
+        })
+    }
 
     return (
         <nav className='navbar'>
@@ -40,7 +53,7 @@ export default function Navbar() {
                 {!user && !username && (
                     <li className="push-left">
                         <Link href="/enter">
-                            <button className='btn-orange'>Log In</button>
+                            <button onClick={handleLoginClick} className='btn-orange'>Log In</button>
                         </Link>
                     </li>
                 )}
