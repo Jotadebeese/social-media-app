@@ -213,7 +213,7 @@ button.load-more {
   text-shadow:1px 1px var(--color-bg);
 }
 
-.card header {
+.card-header {
   display: flex;
   align-items: center;
 }
@@ -249,10 +249,12 @@ button.load-more {
 
 .text-danger {
   color: var(--color-red);
+  text-shadow:1px 1px var(--color-bg);
 }
 
 .text-success {
   color: var(--color-green);
+  text-shadow:1px 1px var(--color-bg);
   display: flex;
   align-items: center;
 }
