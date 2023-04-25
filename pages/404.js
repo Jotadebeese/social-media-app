@@ -9,7 +9,7 @@ export default function Custom404() {
                 <br/>that page does not exist.
             </h2>
             <Link href="/">
-                <button className="load-more">Go back!</button>
+                <button className="load-more"><b>Go back!</b></button>
             </Link>
         </div>
         <img src={'./404-page.png'} />
