@@ -141,7 +141,7 @@ button:hover {
 
 button:disabled,
 button[disabled]{
-  filter: brightness(80%);
+  filter: brightness(50%);
   cursor: not-allowed;
 }
 

@@ -1,3 +1,4 @@
+import styles from '@/styles/Admin.module.css';
 import AuthCheck from "@/components/AuthCheck";
 import PostFeed from "@/components/PostFeed";
 import { UserContext } from "@/lib/context";
@@ -51,7 +52,7 @@ function CreateNewPost() {
         };
 
         await setDoc(ref, data);
-        
+
         toast.success('Post created!');
 
         // Imperative navigation after post is set
@@ -61,14 +62,14 @@ function CreateNewPost() {
     return (
         <div className="box-center">
             <h1>Manage your Posts</h1>
-            <form onSubmit={createPost}>
+            <form className={styles.card} onSubmit={createPost}>
                 <input 
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                     placeholder="Have something in mind?"
                 />
                 <button type="submit" disabled={!isValid} className="btn-orange">
-                    Create New Post
+                    Next
                 </button>
             </form>
         </div>
