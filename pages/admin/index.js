@@ -31,6 +31,7 @@ function CreateNewPost() {
 
     // Validate length
     const isValid = title.length > 3 && title.length < 100;
+    const dontOverDoIt = title.length > 100;
 
     // Create a new post in firestore
     const createPost = async (e) => {
@@ -45,7 +46,7 @@ function CreateNewPost() {
             uid,
             username,
             published: false,
-            content: '# hello world!',
+            content: 'Someone there?',
             createdAt: serverTimestamp(),
             updatedAt: serverTimestamp(),
             heartCount: 0,
@@ -62,16 +63,20 @@ function CreateNewPost() {
     return (
         <div className="box-center">
             <h1>Manage your Posts</h1>
+            <p className={styles.text}>Space to create, update and delete your posts.<br /><br />
+            If you change your mind, unpublish, or when everything is ready publish. You can do whatever you want. They are yours after all.<br /><br />
+            To start, enter a title and click <b>Next...</b></p>
             <form className={styles.card} onSubmit={createPost}>
                 <input 
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
-                    placeholder="Have something in mind?"
+                    placeholder="New post?"
                 />
                 <button type="submit" disabled={!isValid} className="btn-orange">
                     Next
                 </button>
             </form>
+            <p className='text-danger zero-top-margin'>&nbsp;{dontOverDoIt && 'Too long to handle...'}&nbsp;</p>
         </div>
     );
 }

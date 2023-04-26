@@ -1,4 +1,4 @@
-import { Timestamp, serverTimestamp } from "firebase/firestore";
+import { Timestamp } from "firebase/firestore";
 import Link from "next/link";
 
 export default function PostFeed({ posts, admin }) {

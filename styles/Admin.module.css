@@ -1,9 +1,10 @@
 .card {
     padding: 2rem;
+    padding-bottom: 0;
     background-color: var(--color-bg);
     color: var(--color-text);
     width: 800px;
-    margin: 10px auto;
+    margin: 0 auto;
     display: flex;
     gap: 10px;
 }
@@ -27,4 +28,9 @@
 
 .card input:focus {
     opacity: 100%;
-  }
+}
+
+.text {
+    width: 80%;
+    margin: 30px auto 0 auto;
+}

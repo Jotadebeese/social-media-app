@@ -190,6 +190,9 @@ button.load-more {
   width: 800px;
   margin: 10px auto;
   border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .card-post {
@@ -198,8 +201,18 @@ button.load-more {
   color: var(--color-bg);
   border-radius: 20px;
   margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
+.card-post h1, .post-content {
+  margin: 0;
+}
+
+.card-post .post-content {
+  margin-top: 30px;
+}
 .card-post a {
   color: inherit;
 }
@@ -216,6 +229,7 @@ button.load-more {
 .card-header {
   display: flex;
   align-items: center;
+  margin: 0;
 }
 
 .card footer, .card footer span {
@@ -240,6 +254,7 @@ button.load-more {
 /* Utilities */
 
 .push-left {
+  margin: 0;
   margin-left: auto;
 }
 

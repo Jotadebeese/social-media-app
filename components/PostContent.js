@@ -3,7 +3,13 @@ import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 
 // UI component for main post content
 export default function PostContent({ post} ) {
-    const createdAt = typeof post?.createdAt === 'number' ? new Date(post.createdAt) : post.createdAt.toDate();
+    const dateObj  = typeof post?.createdAt === 'number' ? new Date(post.createdAt) : post.createdAt.toDate();
+
+    const createdAt = dateObj.toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      });
 
     return (
         <div className="card-post">
@@ -13,9 +19,9 @@ export default function PostContent({ post} ) {
                 <Link className="text-username" href={`/${post.username}/`}>
                     <span>@{post.username}</span>
                 </Link>{' '}
-                on {createdAt.toISOString()}
+                on {createdAt}
             </span>
-            <ReactMarkdown>{post?.content}</ReactMarkdown>
+            <ReactMarkdown className="post-content">{post?.content}</ReactMarkdown>
         </div>
     );
 }
