@@ -1,0 +1,30 @@
+.card {
+    padding: 2rem;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    width: 800px;
+    margin: 10px auto;
+    display: flex;
+    gap: 10px;
+}
+
+@media only screen and (max-width: 900px) {
+    .card {
+      width: 90%;
+    }
+}
+
+.card input {
+    background-color: inherit;
+    color: inherit;
+    border-bottom: 1px solid var(--color-text);
+    border-radius: 0;
+    width: 100%;
+    opacity: 50%;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.card input:focus {
+    opacity: 100%;
+  }
