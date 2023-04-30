@@ -34,3 +34,12 @@
     width: 80%;
     margin: 30px auto 0 auto;
 }
+
+.hidden {
+    display: none;
+  }
+  
+.controls {
+    display: flex;
+    flex-direction: column;
+  }
