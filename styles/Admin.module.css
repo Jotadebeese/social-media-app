@@ -1,3 +1,4 @@
+/* Card */
 .card {
     padding: 2rem;
     padding-bottom: 0;
@@ -24,12 +25,157 @@
     opacity: 50%;
     word-wrap: break-word;
     word-break: break-all;
+    transition: ease 0.3s;
 }
 
 .card input:focus {
     opacity: 100%;
+    transition: ease 0.3s;
 }
 
+/* Container */
+.container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding: 20px;
+    justify-content: center;
+    gap: 20px;
+}
+
+.container .title {
+    text-align: center;
+    padding: 50px;
+}
+
+.container section {
+    width: 80%;
+}
+
+.container aside {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    text-align: center;
+    position: sticky;
+    height: 0;
+    top: 200px;
+    width: fit-content;
+    gap: 20px;
+}
+
+.container button {
+    width: 120px;
+    align-self: center;
+}
+
+
+@media only screen and (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+     }
+    
+    .container aside {
+        position: relative;
+        top: 0;
+        height: auto;
+        flex-direction: row;
+    }
+}
+/* Controls and textarea */
+ 
+.controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    height: 80vh;
+    transition: ease 0.3s;
+}
+
+.controls textarea {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    resize: none;
+    border: none;
+    box-shadow: 5px 5px 10px var(--color-b);
+    padding: 20px;
+    background-color: var(--color-text);
+    color: var(--color-bg);
+    font-family: inherit;
+    font-size: 1rem;
+    opacity: 50%;
+    border-radius: 20px;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+    transition: ease 0.3s;
+}
+
+.controls textarea::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
+}
+
+.controls textarea:focus {
+    opacity: 100%;
+    outline: none;
+    transition: ease 0.3s;
+}
+
+.controls2 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Checkbox */
+/* Hide default checkbox */
+.controls2 input[type="checkbox"] {
+    display: none;
+  }
+  
+  /* Style custom checkbox */
+  .checkbox {
+    background-color: var(--color-bg);
+    outline: 2px solid var(--color-text);
+    padding: 5px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 52px;
+    height: fit-content;
+    border-radius: 20px;
+    box-shadow: 5px 5px 10px var(--color-b);
+  }
+  .controls2 label[for="checkbox"]::before {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: none;
+    border-radius: 50%;
+    vertical-align: middle;
+    background-color: var(--color-red);
+    box-shadow: -5px 5px 10px var(--color-b);
+    cursor: pointer;
+    transition: ease 0.3s;
+  }
+  
+  /* Style checked custom checkbox */
+  .controls2 input[type="checkbox"]:checked + label::before {
+    transform: translateX(20px);
+    transition: ease 0.3s;
+    background-color: var(--color-green);
+    box-shadow: 5px 5px 10px var(--color-b);
+  }
+
+/* Utilities */
 .text {
     width: 80%;
     margin: 30px auto 0 auto;
@@ -37,9 +183,5 @@
 
 .hidden {
     display: none;
-  }
-  
-.controls {
-    display: flex;
-    flex-direction: column;
-  }
+    transition: ease 0.3s;
+}

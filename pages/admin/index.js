@@ -61,7 +61,7 @@ function CreateNewPost() {
     };
 
     return (
-        <div className="box-center">
+        <div className="box-center fade-in">
             <h1>Manage your Posts</h1>
             <p className={styles.text}>Space to create, update and delete your posts.<br /><br />
             If you change your mind, unpublish, or when everything is ready publish. You can do whatever you want. They are yours after all.<br /><br />
