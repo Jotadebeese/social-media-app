@@ -70,7 +70,7 @@ export default function Post(props) {
     } 
 
     return (
-      <main className={styles.container}>
+      <main className={`${styles.container} ${'fade-in'}`}>
         <Metatags title={post.title} description={post.title} />
         <section>
             <PostContent post={post} />

@@ -44,7 +44,7 @@ function PostItem({ post, admin = false }) {
     const timeDiff = getTimeAgo(time); 
 
     return (
-        <div className="card">
+        <div className="card fade-in">
             {admin && (
                 <div className="card-header">
                     <Link href={`/admin/${post.slug}`}>

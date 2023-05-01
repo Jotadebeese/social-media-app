@@ -7,7 +7,7 @@
   --color-bg: #0c0c0c;
   --color-b: black;
   --color-text: #ddd5cf;
-  --color-blue: #3b49df;
+  --color-blue: #8c95f8;
   --color-orange: #ff9355;
   --color-green: #cdee7f;
   --color-gray: #e6dad1;
@@ -23,6 +23,7 @@ h1, h2, h3, p { font-weight: normal; }
 html,
 body {
   padding: 0;
+  padding-bottom: 20px;
   margin: 0;
  /* font-family: 'Orbitron', sans-serif; */
   font-family: 'VT323', monospace;
@@ -124,6 +125,7 @@ button {
   cursor: pointer;
   margin: 0;
   white-space: nowrap;
+  transition: ease 0.3s;
 }
 
 @media only screen and (max-width: 768px) {
@@ -136,13 +138,15 @@ button {
 }
 
 button:hover {
-  filter: brightness(90%);
+  filter: brightness(80%);
+  transition: ease 0.3s;
 }
 
 button:disabled,
 button[disabled]{
   filter: brightness(50%);
   cursor: not-allowed;
+  transition: ease 0.3s;
 }
 
 button.btn-orange {
@@ -151,6 +155,10 @@ button.btn-orange {
 
 button.btn-green {
   background-color: var(--color-green);
+}
+
+button.btn-blue {
+  background-color: var(--color-blue);
 }
 
 button.btn-google {
@@ -185,25 +193,27 @@ button.load-more {
 /* Cards */
 .card {
   padding: 2rem;
-  background-color: var(--color-text);
-  color: var(--color-bg);
+  background-color: var(--color-b);
+  color: var(--color-text);
   width: 800px;
   margin: 10px auto;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
   gap: 20px;
+  box-shadow: 5px 5px 10px var(--color-b);
 }
 
 .card-post {
   padding: 2rem;
-  background-color: var(--color-text);
-  color: var(--color-bg);
+  background-color: var(--color-b);
+  color: var(--color-text);
   border-radius: 20px;
   margin-bottom: 10px;
   display: flex;
   flex-direction: column;
   gap: 5px;
+  box-shadow: 5px 5px 10px var(--color-b);
 }
 
 .card-post h1, .post-content {
@@ -279,4 +289,20 @@ button.load-more {
   flex-direction: column;
   align-content: center;
   text-align: center;
+}
+
+.fade-in {
+  opacity: 0;
+  animation-name: fadeIn;
+  animation-duration: 0.8s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
