@@ -54,9 +54,11 @@ function PostForm({ postRef, defaultValues, preview }) {
         register, 
         handleSubmit, 
         reset,
-        formState: { errors, isDirty, isValid}, 
+        formState, 
         watch 
     } = useForm({ defaultValues, mode: 'onChange' });
+
+    const { isValid, isDirty, errors } = formState;
 
     const updatePost = async ({ content, published }) => {
         await updateDoc(postRef, {
@@ -104,7 +106,7 @@ function PostForm({ postRef, defaultValues, preview }) {
                         <label for="checkbox"></label>
                     </div>
                     
-                    <button type='submit' className='btn-green'>
+                    <button type='submit' className='btn-green' disabled={!isDirty || !isValid}>
                         Save changes
                     </button>
 
