@@ -39,7 +39,7 @@ export default function Navbar() {
                             </Link>
                         </li>
                         <li>
-                            <button className="btn-orange" onClick={() => signOut(auth)}>Sign Out</button>
+                            <button className="btn-orange" onClick={() => {signOut(auth); window.location.reload();}}>Sign Out</button>
                         </li>
                         <li>
                             <Link href={`/${username}`}>
@@ -66,7 +66,7 @@ export default function Navbar() {
                         </Link>
                     </li>
                     <li>
-                        <button className="btn-orange" onClick={() => signOut(auth)}>Sign Out</button>
+                        <button className="btn-orange" onClick={() => {signOut(auth); window.location.reload();}}>Sign Out</button>
                     </li>
                     </>
                 )}
