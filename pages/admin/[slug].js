@@ -8,7 +8,11 @@ import { useState } from "react";
 import { useDocumentDataOnce } from "react-firebase-hooks/firestore";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
-import { ReactMarkdown } from "react-markdown/lib/react-markdown";
+
+import ReactMarkdown  from "react-markdown";
+import remarkGfm from 'remark-gfm';
+import remarkMath from 'remark-math';
+import rehypeMathJaxSvg from 'rehype-mathjax';
 
 export default function AdminPostsPage(props ) {
     return (
@@ -80,8 +84,15 @@ function PostForm({ postRef, defaultValues, preview }) {
     return (
         <form onSubmit={handleSubmit(updatePost)}>
             {preview && (
-                <div className='card fade-in'>
-                    <ReactMarkdown>{watch('content')}</ReactMarkdown>
+                <div className='card-post fade-in'>
+                    <ReactMarkdown 
+                        className='mark-down' 
+                        children={watch('content')}
+                        remarkPlugins={[remarkGfm, remarkMath]}
+                        rehypePlugins={[rehypeMathJaxSvg]}
+                        
+                    />
+                        
                 </div>
             )}
 

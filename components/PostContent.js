@@ -1,5 +1,8 @@
 import Link from "next/link";
-import { ReactMarkdown } from "react-markdown/lib/react-markdown";
+import ReactMarkdown  from "react-markdown";
+import remarkGfm from 'remark-gfm';
+import remarkMath from 'remark-math';
+import rehypeMathJaxSvg from 'rehype-mathjax';
 
 // UI component for main post content
 export default function PostContent({ post} ) {
@@ -21,7 +24,13 @@ export default function PostContent({ post} ) {
                 </Link>{' '}
                 on {createdAt}
             </span>
-            <ReactMarkdown className="post-content">{post?.content}</ReactMarkdown>
+            <ReactMarkdown 
+                        className='mark-down post-content' 
+                        children={post?.content}
+                        remarkPlugins={[remarkGfm, remarkMath]}
+                        rehypePlugins={[rehypeMathJaxSvg]}
+                        
+                    />
         </div>
     );
 }
