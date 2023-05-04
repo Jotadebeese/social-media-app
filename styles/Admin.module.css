@@ -28,6 +28,7 @@
     transition: ease 0.3s;
 }
 
+
 .card input:focus {
     opacity: 100%;
     transition: ease 0.3s;
