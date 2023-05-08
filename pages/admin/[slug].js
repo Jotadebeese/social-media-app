@@ -13,6 +13,7 @@ import ReactMarkdown  from "react-markdown";
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 import rehypeMathJaxSvg from 'rehype-mathjax';
+import ImageUploader from '@/components/ImageUploader';
 
 export default function AdminPostsPage(props ) {
     return (
@@ -97,6 +98,9 @@ function PostForm({ postRef, defaultValues, preview }) {
             )}
 
             <div className={`${preview ? styles.hidden : styles.controls} ${'fade-in'}`}>
+
+                <ImageUploader />
+
                 <textarea 
                     {...register('content', {
                         maxLength: { value: 20000, message: 'content is too long' },

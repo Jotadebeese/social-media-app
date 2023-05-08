@@ -26,8 +26,11 @@ export default function Navbar() {
         <nav className='navbar'>
             <ul>
                 <li>
+                    <h3><i>By</i></h3>
+                </li>
+                <li>
                     <Link href="/">
-                        <button>PAGINA</button>
+                        <button><i>PAGINA</i></button>
                     </Link>
                 </li>
                 {/* user is signed-in and has username */}
