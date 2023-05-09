@@ -84,6 +84,8 @@
         top: 0;
         height: auto;
         flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
     }
 }
 /* Controls and textarea */

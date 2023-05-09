@@ -1,7 +1,7 @@
 import styles from '@/styles/Admin.module.css';
 import AuthCheck from "@/components/AuthCheck";
 import { auth, firestore } from "@/lib/firebase";
-import { doc, serverTimestamp, updateDoc } from "firebase/firestore";
+import { deleteDoc, doc, serverTimestamp, updateDoc } from "firebase/firestore";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
@@ -14,6 +14,7 @@ import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 import rehypeMathJaxSvg from 'rehype-mathjax';
 import ImageUploader from '@/components/ImageUploader';
+import { deleteObject, getStorage, listAll, ref } from 'firebase/storage';
 
 export default function AdminPostsPage(props ) {
     return (
@@ -47,6 +48,7 @@ function PostManager() {
                         <Link href={`/${post.username}/${post.slug}`}>
                             <button className="btn-blue">Live view</button>
                         </Link>
+                        <DeletePostButton postRef={postRef} slug={slug} />
                     </aside>
                 </>
             )}
@@ -128,6 +130,39 @@ function PostForm({ postRef, defaultValues, preview }) {
                 </div>                
             </div>
         </form>
+    );
+}
+
+function DeletePostButton( {postRef, slug} ) {
+    const router = useRouter();
+    const storage = getStorage();
+
+    // const fileRef = ref(storage, `uploads/${auth.currentUser.uid}/${slug}/`);
+
+    const deletePost = async () => {
+        const doIt = confirm('are you sure?');
+        if (doIt) {
+            await deleteDoc(postRef);
+            router.push('/admin');
+            toast('Eliminado! ', { icon: '🗑️'} );
+        }
+        // if(fileRef) {
+        //     listAll(fileRef)
+        //         .then((result) => {
+        //             // Delete the file
+        //         deleteObject(fileRef).then(() => {
+        //             console.log('File deleted');
+        //         }).catch((error) => {
+        //             console.log(error);
+        //         });
+        //         })
+        // }
+    };
+
+    return (
+        <button className='btn-red' onClick={deletePost}>
+            Delete
+        </button>
     );
 }
 

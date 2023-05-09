@@ -163,6 +163,10 @@ button.btn-blue {
   background-color: var(--color-blue);
 }
 
+button.btn-red {
+  background-color: var(--color-red);
+}
+
 button.btn-google {
   background-color: white;
 }
