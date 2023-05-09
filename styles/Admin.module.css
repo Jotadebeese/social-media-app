@@ -78,7 +78,9 @@
         align-items: center;
         justify-content: center;
      }
-    
+    .container section {
+        width: 100%;
+    }
     .container aside {
         position: relative;
         top: 0;
