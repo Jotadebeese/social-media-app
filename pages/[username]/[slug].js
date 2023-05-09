@@ -7,6 +7,8 @@ import { useContext } from "react";
 import { useDocumentData } from 'react-firebase-hooks/firestore'
 import Link from 'next/link';
 import Metatags from '@/components/Metatags';
+import AuthCheck from '@/components/AuthCheck';
+import HeartButton from '@/components/HeartButton';
 
 
 export async function getStaticProps({ params }) {
@@ -61,6 +63,7 @@ export default function Post(props) {
 
     const post = realtimePost || props.post;
     const user = props.user;
+    const { user: currentUser } = useContext(UserContext);
 
     var carrotsCount = post.heartCount
     if ( carrotsCount >= 1000) {
@@ -85,7 +88,25 @@ export default function Post(props) {
                     <p><i>@{user.username}</i></p>
                 </Link>
                 <h1>{user.displayName || 'Anonymous User'}</h1>
-                <p><img src={'/carrot.png'} width="30px" />&nbsp;{carrotsCount || 0}</p>
+
+                <AuthCheck 
+                    fallback={
+                        <>
+                            <p><img src={'/carrot.png'} width="30px" />&nbsp;{carrotsCount || ''}</p>
+                            <Link href="/enter">
+                                <button>Sign Up</button>
+                            </Link>
+                        </>
+                    }
+                >
+                    <HeartButton postRef={postRef} carrotsCount={carrotsCount} />
+                </AuthCheck>
+
+                {currentUser?.uid === post.uid && (
+                    <Link href={`/admin/${post.slug}`}>
+                        <button>Edit</button>
+                    </Link>
+                )}
             </div>
         </aside>
   

@@ -38,7 +38,7 @@ export default function Navbar() {
                     <>
                         <li className="push-left">
                             <Link href="/admin">
-                                <button>Write Posts</button>
+                                <button>Posts</button>
                             </Link>
                         </li>
                         <li>

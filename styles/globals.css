@@ -215,7 +215,9 @@ button.load-more {
   margin-bottom: 10px;
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
   box-shadow: 5px 5px 10px var(--color-b);
 }
 
@@ -331,6 +333,21 @@ input[type="file"] {
   align-items: center;
   width: 100%;
   gap: 10px;
+}
+
+.small-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+}
+
+.carrot-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  transition: ease 0.3s;
 }
 
 @media only screen and (max-width: 768px) {

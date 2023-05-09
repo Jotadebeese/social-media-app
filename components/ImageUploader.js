@@ -50,7 +50,10 @@ export default function ImageUploader() {
             {!uploading && (
                 <>
                     <label className="btn">
-                        <img src={'/camera.gif'} width="60px" />
+                        <div className="small-box">
+                            <img src={'/camera.gif'} width="60px" />
+                            <p>Upload Image</p>
+                        </div>
                         <input type="file" onChange={uploadFile} accept="image/x-png,image/gif,image/jpeg" />
                     </label>
                 </>
