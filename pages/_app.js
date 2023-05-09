@@ -3,6 +3,7 @@ import Navbar from '@/components/Navbar'
 import { Toaster } from 'react-hot-toast';
 import { UserContext } from '@/lib/context';
 import { useUserData } from '@/lib/hooks';
+import { Analytics } from '@vercel/analytics/react';
 
 export default function App({ Component, pageProps }) {
 
@@ -13,6 +14,7 @@ export default function App({ Component, pageProps }) {
       <Navbar />
       <Component {...pageProps} />
       <Toaster />
+      <Analytics />
     </UserContext.Provider>
   );
 }

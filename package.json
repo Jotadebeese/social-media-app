@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@mapbox/rehype-highlight-code-block": "^1.0.0",
+    "@vercel/analytics": "^1.0.1",
     "firebase": "^9.19.1",
     "hooks": "^0.3.2",
     "lodash.debounce": "^4.0.8",
