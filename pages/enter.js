@@ -1,5 +1,5 @@
 import { auth, firestore, googleAuthProvider } from "@/lib/firebase"
-import { signInWithPopup, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import { doc, writeBatch, getDoc, getFirestore } from 'firebase/firestore';
 import { useEffect, useState, useCallback, useContext } from "react";
 import { UserContext } from "@/lib/context";
@@ -29,14 +29,55 @@ function Redirect() {
 // Sign in with google button
 function SignInButton() {
 
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState(null);
+
     const signInWithGoogle = async () => {
         await signInWithPopup(auth, googleAuthProvider);
     };
 
+    const signInWithEmail = async (e) => {
+        e.preventDefault();
+        try {
+            await signInWithEmailAndPassword(auth, email, password);
+        } catch (error) {
+            setError(error.message);
+        }
+    };
+
+    const signUpWithEmail = async (e) => {
+        e.preventDefault();
+        try {
+            await createUserWithEmailAndPassword(auth, email, password);
+        } catch (error) {
+            setError(error.message);
+        }
+    };
+
     return (
-        <button className="btn-google" onClick={signInWithGoogle}>
-            <img src={'/google.png'} width="20px" />&nbsp;Sign in with Google
-        </button>
+        <div className="login-box">
+            <h2>How do you want to login?</h2>
+            <p>Email and password for people who always do extra work...</p>
+            <form className="card-post card login-form" onSubmit={signInWithEmail}>
+                <label>Email</label>
+                <input name="email" placeholder="Enter an email..." type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                <label>Password</label>
+                <input name="password" placeholder="Create a password you can remember!" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                <button type="submit">
+                    Just do it
+                </button>
+            </form>
+            <p> Or...<br/>
+                Google for people who wants an easy process.</p>
+            <button className="btn-google" onClick={signInWithGoogle}>
+                <img src={'/google.png'} width="20px" />&nbsp;Sign in with Google
+            </button>
+            <br />
+            <span>Don't have an account yet? </span>
+            <button onClick={signUpWithEmail}>Sign up here.</button>
+            {error && <p className="text-danger">{error}</p>}
+        </div>
     )
 }
 
@@ -105,25 +146,16 @@ function UsernameForm() {
 
     return (
         !username && (
-            <section>
+            <section className="login-box">
                 <h3>Create an Username</h3>
-                <form onSubmit={onSubmit}>
+                <form className="card-post card login-form" onSubmit={onSubmit}>
                     <input name="username" placeholder="Start typing..." value={formValue} onChange={onChange} />
-                    <UsernameMessage username={formValue} isValid={isValid} loading={loading} />
                     <button type="submit" disabled={!isValid}>
                         I choose you!&nbsp;
                         <img src={'/pokeball.png'} width="20px" />
                     </button>
-
-                    <h3>Debug State</h3>
-                    <div>
-                        Username: {formValue}
-                        <br />
-                        loading: {loading.toString()}
-                        <br />
-                        Username Valid: {isValid.toString()}
-                    </div>
                 </form>
+                <UsernameMessage username={formValue} isValid={isValid} loading={loading} />
             </section>
         )
     );
