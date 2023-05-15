@@ -8,7 +8,6 @@ import Metatags from "@/components/Metatags";
 import { useRouter } from "next/router";
 
 export default function EnterPage(props) {
-    
     const { user, username } = useContext(UserContext)
 
     return (
@@ -22,8 +21,9 @@ export default function EnterPage(props) {
 
 function Redirect() {
     const router = useRouter()
-    const redirectUrl = router.query.redirect// get the URL from the query parameter
-    router.push(redirectUrl) // redirect the user back to the original page
+    const redirectUrl = router.query.redirect == null ? '/' : router.query.redirect;// get the URL from the query parameter
+    console.log({redirectUrl});
+    router.push(redirectUrl); // redirect the user back to the original page
 }
 
 // Sign in with google button
@@ -65,9 +65,10 @@ function SignInButton() {
                 <label>Password</label>
                 <input name="password" placeholder="Create a password you can remember!" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                 <button type="submit">
-                    Just do it
+                    Sign In
                 </button>
             </form>
+            {error && <p className="text-danger">{error}</p>}
             <p> Or...<br/>
                 Google for people who wants an easy process.</p>
             <button className="btn-google" onClick={signInWithGoogle}>
@@ -75,8 +76,7 @@ function SignInButton() {
             </button>
             <br />
             <span>Don't have an account yet? </span>
-            <button onClick={signUpWithEmail}>Sign up here.</button>
-            {error && <p className="text-danger">{error}</p>}
+            <button onClick={signUpWithEmail}>Sign up here</button>
         </div>
     )
 }
