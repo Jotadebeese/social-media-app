@@ -58,7 +58,7 @@ export async function getStaticPaths() {
 }
 
 export default function Post(props) {
-    const postRef = doc(getFirestore(), props.path);
+    const postRef = doc(firestore, props.path);
     const [realtimePost] = useDocumentData(postRef);
 
     const post = realtimePost || props.post;
@@ -99,7 +99,7 @@ export default function Post(props) {
                         </>
                     }
                 >
-                    <HeartButton postRef={postRef} carrotsCount={carrotsCount} />
+                    <HeartButton postRef={postRef} postUid={post.uid} carrotsCount={carrotsCount} />
                 </AuthCheck>
 
                 {currentUser?.uid === post.uid && (

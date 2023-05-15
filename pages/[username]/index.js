@@ -29,7 +29,7 @@ export async function getServerSideProps({ query: urlQuery }) {
         user = userDoc.data();
 
         const postsQuery = query(
-            collection(getFirestore(), refPath, 'posts'),
+            collection(firestore, refPath, 'posts'),
             where('published', '==', true),
             orderBy('createdAt', 'desc'),
             limit(LIMIT)
@@ -43,12 +43,13 @@ export async function getServerSideProps({ query: urlQuery }) {
 }
 
 export default function UserProfilePage( props ) {
+    
     const user = props.user;
     const refPath = props.refPath;
     const [posts, setPosts] = useState(props.posts);
     const [loading, setLoading] = useState(false);
-    const [postsEnd, setPostsEnd] = useState(false);
-
+    const [postsEnd, setPostsEnd] = useState(posts.length == 0 ? true : false);
+    
     // Get next page in pagination query
     const getMorePosts = async () => {
         setLoading(true)
