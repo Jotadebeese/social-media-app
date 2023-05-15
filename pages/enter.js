@@ -59,7 +59,7 @@ function SignInButton() {
         <div className="login-box">
             <h2>How do you want to login?</h2>
             <p>Email and password for people who always do extra work...</p>
-            <form className="card-post card login-form" onSubmit={signInWithEmail}>
+            <form className="login-form" onSubmit={signInWithEmail}>
                 <label>Email</label>
                 <input name="email" placeholder="Enter an email..." type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
                 <label>Password</label>

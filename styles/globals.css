@@ -353,7 +353,19 @@ input[type="file"] {
 }
 
 .login-form {
+  padding: 2rem;
+  width: 90%;
+  max-width: 900px;
+  background-color: var(--color-b);
+  color: var(--color-text);
+  border-radius: 20px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 20px;
+  box-shadow: 5px 5px 10px var(--color-b);
 }
 
 .login-form input {
