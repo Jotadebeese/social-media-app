@@ -4,11 +4,7 @@ import { useDocument } from "react-firebase-hooks/firestore";
 
 
 // Allows user to hear or like a post
-export default function Heart({ postRef, carrotsCount }) {
-    // Listen to heart document for currently logged in user
-    const heartRef = doc(firestore, postRef.path, 'hearts', auth.currentUser.uid);
-    const [heartDoc] = useDocument(heartRef);
-
+export default function Heart({ postRef, carrotsCount, postUid }) {
     // Create user-to-post relationship
     const addHeart = async () => {
         const uid = auth.currentUser.uid;
@@ -19,6 +15,10 @@ export default function Heart({ postRef, carrotsCount }) {
 
         await batch.commit();
     };
+
+    // Listen to heart document for currently logged in user
+    const heartRef = doc(firestore, postRef.path, 'hearts', postUid);
+    const [heartDoc] = useDocument(heartRef);
 
     // Remove a user-to-post relationship
     const removeHeart = async () => {
