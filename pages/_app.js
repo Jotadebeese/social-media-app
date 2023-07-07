@@ -4,6 +4,7 @@ import { Toaster } from 'react-hot-toast';
 import { UserContext } from '@/lib/context';
 import { useUserData } from '@/lib/hooks';
 import { Analytics } from '@vercel/analytics/react';
+import Version from '@/components/Version';
 
 export default function App({ Component, pageProps }) {
 
@@ -15,6 +16,7 @@ export default function App({ Component, pageProps }) {
       <Component {...pageProps} />
       <Toaster />
       <Analytics />
+      <Version />
     </UserContext.Provider>
   );
 }

@@ -307,6 +307,12 @@ input[type="file"] {
 
 /* Utilities */
 
+.bottom-right {
+  bottom: 10px;
+  right: 10px;
+  position: fixed;
+}
+
 .push-left {
   margin: 0;
   margin-left: auto;
